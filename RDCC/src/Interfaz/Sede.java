@@ -158,12 +158,13 @@ public class Sede extends javax.swing.JFrame {
     }//GEN-LAST:event_BtBuscarActionPerformed
 
     private void BtCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtCrearActionPerformed
-        ResultSet RS = null;
         try{            
             if(IdSedeTxtField.getText().isEmpty() && !DireccionTxtField.getText().isEmpty() && !TelefonoTxtField.getText().isEmpty()){
-            rs = stmt.executeQuery("SELECT * FROM Sede WHERE Direccion = "+ "'" + DireccionTxtField.getText() + "'" + " AND "+ "Telefono =" + "'" + TelefonoTxtField.getText() + "'");
-                if(rs == null){
-                    RS = stmt.executeQuery("INSERT INTO Sede (Direccion, Telefono) VALUES (" + "'" + TelefonoTxtField.getText() + "'" + "," + "'" + DireccionTxtField.getText() + "'" + ")");
+            stmt = Conexion.link.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM Sede WHERE Direccion = "+ "'" + DireccionTxtField.getText() + "'" + " AND "+ "Telefono = " + "'" + TelefonoTxtField.getText() + "'");
+                if(!rs.next()){
+                    stmt.executeUpdate("INSERT INTO Sede (Direccion, Telefono) VALUES (" + "'" + DireccionTxtField.getText() + "'" + ", " + "'" + TelefonoTxtField.getText() + "'" + ")");
+                    showMessageDialog(null, "Creación de registro exitosa");
                 }
                 else{
                     showMessageDialog(null, "Esta sede ya existe");
@@ -172,7 +173,7 @@ public class Sede extends javax.swing.JFrame {
             else{
                 showMessageDialog(null, "Datos incorrectos para crear un nuevo registro");
             }
-        }catch(SQLException e){
+        }catch(Exception e){
             System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_BtCrearActionPerformed
