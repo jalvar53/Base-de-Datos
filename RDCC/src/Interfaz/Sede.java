@@ -24,18 +24,18 @@ public class Sede extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     
     public String getQuery(){
-        query = "SELECT * FROM Sede WHERE";
+        query = "SELECT * FROM Sede WHERE ";
         if(!IdSedeTxtField.getText().isEmpty()){
-            query = query + "IdSede = " + "'" + IdSedeTxtField.getText() + "'" + " AND";
+            query = query + "`IdSede` = " + "'" + IdSedeTxtField.getText() + "'" + " AND ";
         }
         if(!DireccionTxtField.getText().isEmpty()){
-            query = query + "Direccion = " + "'" + DireccionTxtField.getText() + "'" + " AND";
+            query = query + "`Direccion` = " + "'" + DireccionTxtField.getText() + "'" + " AND ";
         }
         if(!TelefonoTxtField.getText().isEmpty()){
-            query = query + "Telefono = " + "'" + TelefonoTxtField.getText() + "'" + " AND";
+            query = query + "`Telefono` = " + "'" + TelefonoTxtField.getText() + "'" + " AND ";
         }
         if(!IdSedeTxtField.getText().isEmpty() || !DireccionTxtField.getText().isEmpty() || !TelefonoTxtField.getText().isEmpty()){
-            query = query.substring(0, query.length()-3);
+            query = query.substring(0, query.length()-4);
         }
         else{
             query = query.substring(0, query.length()-5);
@@ -148,7 +148,7 @@ public class Sede extends javax.swing.JFrame {
         try{
             stmt = Conexion.link.createStatement();
             rs = stmt.executeQuery(getQuery());
-            JTable table = new JTable(buildTableModel(rs));
+            JTable table = new JTable(Conexion.buildTableModel(rs));
             JOptionPane.showMessageDialog(null, new JScrollPane(table));
         }
         catch(SQLException e){
@@ -190,26 +190,4 @@ public class Sede extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 
-    private TableModel buildTableModel(ResultSet rs) throws SQLException {
-
-    ResultSetMetaData metaData = rs.getMetaData();
-
-    // names of columns
-    Vector<String> columnNames = new Vector<String>();
-    int columnCount = metaData.getColumnCount();
-    for (int column = 1; column <= columnCount; column++) {
-        columnNames.add(metaData.getColumnName(column));
-    }
-
-    // data of the table
-    Vector<Vector<Object>> data = new Vector<Vector<Object>>();
-    while (rs.next()) {
-        Vector<Object> vector = new Vector<Object>();
-        for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
-            vector.add(rs.getObject(columnIndex));
-        }
-        data.add(vector);
-    }
-
-    return new DefaultTableModel(data, columnNames);}
 }

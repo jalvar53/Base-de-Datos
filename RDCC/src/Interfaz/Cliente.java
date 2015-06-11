@@ -1,14 +1,11 @@
 package Interfaz;
 
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 public class Cliente extends javax.swing.JFrame {
 
@@ -121,9 +118,9 @@ public class Cliente extends javax.swing.JFrame {
                         .addComponent(Correo))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(BtCrear)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(BtBuscar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BtSalir)))
                 .addContainerGap())
         );
@@ -200,17 +197,20 @@ public class Cliente extends javax.swing.JFrame {
             try{
             stmt = Conexion.link.createStatement();
             rs = stmt.executeQuery(getQuery());
-            if(rs == null){
+            if(!rs.isBeforeFirst()){
                 try{
                 stmt = Conexion.link.createStatement();
-                rs = stmt.executeQuery("INSERT INTO `"
-                        + "Cliente`(`ID`, `Tipo de Identificacion`, `Nombre`, `Apellido`, `Telefono`, `Correo`, `Direccion`)"
-                        + "VALUES ("+ID.getSelectedText()+","+String.valueOf(TipoId.getSelectedItem())+","+Nombre.getText()+","
-                        + Apellido.getText()+","+ Telefono.getText() +","+Correo.getText()+","+Direccion.getText());
+                stmt.executeUpdate("INSERT INTO `"
+                        + "Cliente` (`ID`, `Tipo de Identificacion`, `Nombre`, `Apellido`, `Telefono`, `Correo`, `Direccion`)"
+                        + "VALUES ('"+ID.getText()+"','"+String.valueOf(TipoId.getSelectedItem())+"','"+Nombre.getText()+"','"
+                        + Apellido.getText()+"','"+ Telefono.getText() +"','"+Correo.getText()+"','"+Direccion.getText()+"')");
+                JOptionPane.showMessageDialog(null, "Creacion exitosa");
                 }
                 catch(SQLException e){
                     System.out.println(e.getMessage());
                 }
+            } else {
+                JOptionPane.showMessageDialog(null, "Este registro ya existe");
             }
         }
         catch(SQLException e){
@@ -242,24 +242,24 @@ public class Cliente extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private String getQuery() {
-       String query = "SELECT * FROM Cliente WHERE 'Tipo de Identificacion' = '" + String.valueOf(TipoId.getSelectedItem()) + "'"; 
+       String query = "SELECT * FROM `Cliente` WHERE `Tipo de Identificacion` = '" + String.valueOf(TipoId.getSelectedItem()) + "' "; 
        if(ID.getText().isEmpty() == false){
-           query += "AND ID = '" + ID.getText() + "'";
+           query += "AND `ID` = '" + ID.getText() + "' ";
        }
        if(Nombre.getText().isEmpty() == false){
-           query += "AND Nombre = '" + Nombre.getText() + "'";
+           query += "AND `Nombre` = '" + Nombre.getText() + "' ";
        }
        if(Apellido.getText().isEmpty() == false){
-           query += "AND Apellido = '" + Apellido.getText() + "'";
+           query += "AND `Apellido` = '" + Apellido.getText() + "' ";
        }
        if(Telefono.getText().isEmpty() == false){
-           query += "AND Telefono = '" + Telefono.getText() + "'";
+           query += "AND `Telefono` = '" + Telefono.getText() + "' ";
        }
        if(Correo.getText().isEmpty() == false){
-           query += "AND Correo = '" + Correo.getText() + "'";
+           query += "AND `Correo` = '" + Correo.getText() + "' ";
        }
        if(Direccion.getText().isEmpty() == false){
-           query += "AND Direccion = '" + Direccion.getText() + "'";
+           query += "AND `Direccion` = '" + Direccion.getText() + "' ";
        }
         System.out.println(query);
        return query;
