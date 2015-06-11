@@ -1,15 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Interfaz;
 import java.sql.*;
-import javax.swing.JOptionPane;
-/**
- *
- * @author Juan
- */
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
+
 public class Conexion {
     public String db = "sql379747";
     public String url = "jdbc:mysql://sql3.freesqldatabase.com:3306/"+db;
@@ -27,8 +20,7 @@ public class Conexion {
             throw new Exception("Usuario incorrecto " + ex.getMessage());
         }
         return link;
-
-   }
+    }
     
     public void setUser(String user){
         this.user = user;
@@ -37,5 +29,27 @@ public class Conexion {
     public void setPass(String pass){
         this.pass = pass;
     }
+    
+    public static DefaultTableModel buildTableModel(ResultSet rs)
+        throws SQLException {
 
+    ResultSetMetaData metaData = rs.getMetaData();
+
+    Vector<String> columnNames = new Vector<String>();
+    int columnCount = metaData.getColumnCount();
+    for (int column = 1; column <= columnCount; column++) {
+        columnNames.add(metaData.getColumnName(column));
+    }
+
+    // data of the table
+    Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+    while (rs.next()) {
+        Vector<Object> vector = new Vector<Object>();
+        for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+            vector.add(rs.getObject(columnIndex));
+        }
+        data.add(vector);
+    }
+    return new DefaultTableModel(data, columnNames);
+    }
 }
