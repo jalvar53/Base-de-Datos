@@ -3,7 +3,14 @@ package Interfaz;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.util.Vector;
+import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 public class Sede extends javax.swing.JFrame {
 
@@ -12,13 +19,12 @@ public class Sede extends javax.swing.JFrame {
     ResultSet rs = null;
     
     public Sede() {
-        setUndecorated(true); 
         initComponents();
     }
     @SuppressWarnings("unchecked")
     
     public String getQuery(){
-        String query = "SELECT * FROM Sede WHERE";
+        query = "SELECT * FROM Sede WHERE";
         if(!IdSedeTxtField.getText().isEmpty()){
             query = query + "IdSede = " + "'" + IdSedeTxtField.getText() + "'" + " AND";
         }
@@ -142,6 +148,8 @@ public class Sede extends javax.swing.JFrame {
         try{
             stmt = Conexion.link.createStatement();
             rs = stmt.executeQuery(getQuery());
+            JTable table = new JTable(buildTableModel(rs));
+            JOptionPane.showMessageDialog(null, new JScrollPane(table));
         }
         catch(SQLException e){
             System.out.println(e.getMessage());
@@ -161,6 +169,9 @@ public class Sede extends javax.swing.JFrame {
                     showMessageDialog(null, "Esta sede ya existe");
                 }
             }
+            else{
+                showMessageDialog(null, "Datos incorrectos para crear un nuevo registro");
+            }
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }
@@ -177,4 +188,27 @@ public class Sede extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
+
+    private TableModel buildTableModel(ResultSet rs) throws SQLException {
+
+    ResultSetMetaData metaData = rs.getMetaData();
+
+    // names of columns
+    Vector<String> columnNames = new Vector<String>();
+    int columnCount = metaData.getColumnCount();
+    for (int column = 1; column <= columnCount; column++) {
+        columnNames.add(metaData.getColumnName(column));
+    }
+
+    // data of the table
+    Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+    while (rs.next()) {
+        Vector<Object> vector = new Vector<Object>();
+        for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+            vector.add(rs.getObject(columnIndex));
+        }
+        data.add(vector);
+    }
+
+    return new DefaultTableModel(data, columnNames);}
 }
