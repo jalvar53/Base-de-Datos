@@ -3,7 +3,6 @@ package Interfaz;
 public class OpcionesAdmin extends javax.swing.JFrame {
 
     public OpcionesAdmin() {
-        setUndecorated(true); 
         initComponents();
     }
 

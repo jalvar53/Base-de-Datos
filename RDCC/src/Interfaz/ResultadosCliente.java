@@ -3,7 +3,6 @@ package Interfaz;
 public class ResultadosCliente extends javax.swing.JFrame {
 
     public ResultadosCliente() {
-        setUndecorated(true); 
         initComponents();
     }
 

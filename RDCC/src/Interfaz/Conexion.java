@@ -5,6 +5,7 @@
  */
 package Interfaz;
 import java.sql.*;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Juan

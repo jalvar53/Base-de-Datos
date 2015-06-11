@@ -1,9 +1,11 @@
 package Interfaz;
 
-public class Carro extends javax.swing.JFrame {
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
+public class Carro extends javax.swing.JFrame {
+    
     public Carro() {
-        setUndecorated(true); 
         initComponents();
     }
     
@@ -29,7 +31,6 @@ public class Carro extends javax.swing.JFrame {
         BtBuscar = new javax.swing.JButton();
         BtAgregar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -110,7 +111,7 @@ public class Carro extends javax.swing.JFrame {
                                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(BtAgregar)
-                                .addGap(70, 70, 70)
+                                .addGap(89, 89, 89)
                                 .addComponent(BtBuscar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(BtSalir))

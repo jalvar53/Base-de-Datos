@@ -6,7 +6,6 @@ import javax.swing.JOptionPane;
 public class Cliente extends javax.swing.JFrame {
 
     public Cliente() {
-        setUndecorated(true); 
         initComponents();
     }
 
