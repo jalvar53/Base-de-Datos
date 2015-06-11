@@ -313,7 +313,69 @@ public class Carro extends javax.swing.JFrame {
     }//GEN-LAST:event_BtBuscarActionPerformed
 
     private void BtAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtAgregarActionPerformed
-        // TODO add your handling code here:
+        String PlacaS;
+        String MarcaS;
+        String ModeloS;
+        String AnoS;
+        String IdSede;
+        try{
+        if(!"".equals(Placa.getText())){
+            throw new Exception();
+        }
+        PlacaS = "\"" + Placa.getText() + "\"";
+        if(!Marca.getSelectedItem().equals("--Seleccione--")){
+            if(Marca.getSelectedItem().equals("Otro")){
+                if(!Otro.getText().equals("")){
+                    MarcaS = "\"" + Otro.getText() + "\"";
+                }else{
+                    throw new Exception();
+                }
+            }else{
+                MarcaS = "\"" + Otro.getText() + "\"";
+            }
+        }else{
+            throw new Exception();
+        }
+        try{
+            if(!Modelo.getSelectedItem().equals("--Seleccione--")){
+                if(Modelo.getSelectedItem().equals("Otro")){
+                    if(!OtroM.getText().equals("")){
+                        ModeloS = "\"" + OtroM.getText()+ "\"";
+                    }else{
+                        throw new Exception();
+                    }
+                }else{
+                    ModeloS ="\""+  OtroM.getText()+ "\"";
+                }
+            }else{
+                throw new Exception();
+            }
+        }catch(java.lang.NullPointerException npe){
+            throw new Exception();
+        }
+        if(!Desde.getText().equals(Hasta.getText().equals(""))){
+            throw new Exception();
+        }
+        AnoS = Desde.getText().toString();
+        if(!Ubicacion.getSelectedItem().equals("--Seleccione--")){
+            IdSede = Ubicacion.getSelectedItem().toString();
+        }else{
+            throw new Exception();
+        }
+        String query = "Insert Into Auto (Placa, Marca, Modelo, Año, IdSede) Values (" + PlacaS + ", " + MarcaS + ", " + ModeloS + ", " + AnoS + ", " + IdSede;
+        try{
+            Statement cmd = Conexion.link.createStatement();
+            ResultSet rs = cmd.executeQuery(query);
+            DefaultTableModel table = Conexion.buildTableModel(rs);
+            JTable tabla = new JTable(table);
+            JOptionPane.showMessageDialog(null, new JScrollPane(tabla));
+        }catch(Exception e){
+            System.out.println(query);
+            System.out.println(e.getMessage());
+        }
+        }catch(Exception e){
+            
+        }
     }//GEN-LAST:event_BtAgregarActionPerformed
 
     private void MarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MarcaActionPerformed
