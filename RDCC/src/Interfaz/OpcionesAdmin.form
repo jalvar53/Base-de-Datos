@@ -28,7 +28,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="BtSalir" max="32767" attributes="0"/>
-                  <Component id="BtClientes" alignment="0" max="32767" attributes="0"/>
+                  <Component id="BtClientes" alignment="0" pref="129" max="32767" attributes="0"/>
                   <Component id="BtSedes" max="32767" attributes="0"/>
                   <Component id="BtCarros" alignment="0" max="32767" attributes="0"/>
               </Group>
@@ -47,7 +47,7 @@
               <Component id="BtClientes" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="BtSalir" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="46" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
