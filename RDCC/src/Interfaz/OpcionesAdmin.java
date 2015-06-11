@@ -116,7 +116,10 @@ public class OpcionesAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_BtSalirActionPerformed
 
     private void BtRentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtRentaActionPerformed
-        // TODO add your handling code here:
+        Historial renta = new Historial();
+        renta.setVisible(true);
+        renta.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_BtRentaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

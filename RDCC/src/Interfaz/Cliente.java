@@ -187,6 +187,7 @@ public class Cliente extends javax.swing.JFrame {
             JTable table = new JTable(Conexion.buildTableModel(rs));
             Resultados resultado;
             resultado = new Resultados(table);
+            resultado.setLocationRelativeTo(null);
         }
         catch(SQLException e){
             System.out.println(e.getMessage());
