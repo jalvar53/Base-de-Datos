@@ -55,15 +55,19 @@ public class Carro extends javax.swing.JFrame {
         Hasta = new javax.swing.JTextField();
         Ubicacion = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        DisponiblesA = new javax.swing.JCheckBox();
         BtSalir = new javax.swing.JButton();
         BtBuscar = new javax.swing.JButton();
-        BtAgregar = new javax.swing.JButton();
         Marca = new javax.swing.JComboBox();
         jLabel8 = new javax.swing.JLabel();
         Otro = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         OtroM = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        DesdeC = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        HastaC = new javax.swing.JTextField();
 
         setResizable(false);
 
@@ -99,10 +103,10 @@ public class Carro extends javax.swing.JFrame {
 
         jLabel7.setText("Ubicación:");
 
-        jCheckBox1.setText("Sólo mostrar autos disponibles");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        DisponiblesA.setText("Sólo mostrar autos disponibles");
+        DisponiblesA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                DisponiblesAActionPerformed(evt);
             }
         });
 
@@ -117,13 +121,6 @@ public class Carro extends javax.swing.JFrame {
         BtBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtBuscarActionPerformed(evt);
-            }
-        });
-
-        BtAgregar.setText("Agregar");
-        BtAgregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtAgregarActionPerformed(evt);
             }
         });
 
@@ -143,61 +140,81 @@ public class Carro extends javax.swing.JFrame {
 
         jLabel9.setText("Cual");
 
+        jLabel10.setText("Costo");
+
+        jLabel11.setText("Desde");
+
+        jLabel12.setText("Hasta");
+
+        HastaC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HastaCActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(BtBuscar)
+                        .addComponent(DisponiblesA))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel10))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(Placa, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(Marca, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(BtAgregar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(BtBuscar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(Placa, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Marca, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(143, 143, 143)
-                                        .addComponent(jLabel2))
-                                    .addComponent(jLabel1))
-                                .addGap(85, 85, 85)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Otro, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8))))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(Ubicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)
-                            .addComponent(Modelo, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(BtSalir))
-                            .addComponent(OtroM)
+                                .addGap(143, 143, 143)
+                                .addComponent(jLabel2))
+                            .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jCheckBox1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(Desde, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Hasta, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(Hasta, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(38, 38, 38)
+                                .addComponent(jLabel11)))
+                        .addGap(5, 5, 5)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Otro, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(DesdeC, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel12)))))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(Modelo, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(OtroM)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addGap(0, 32, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BtSalir)
+                            .addComponent(HastaC, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(Ubicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -222,19 +239,23 @@ public class Carro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel4))
-                .addGap(1, 1, 1)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6)
                     .addComponent(Hasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Desde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Ubicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Ubicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11)
+                    .addComponent(DesdeC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12)
+                    .addComponent(HastaC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox1)
+                .addComponent(DisponiblesA)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BtAgregar)
                     .addComponent(BtBuscar)
                     .addComponent(BtSalir))
                 .addContainerGap())
@@ -247,51 +268,65 @@ public class Carro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_PlacaActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void DisponiblesAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DisponiblesAActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_DisponiblesAActionPerformed
 
     private void BtSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtSalirActionPerformed
-        OpcionesAdmin opc = new OpcionesAdmin();
-        opc.setVisible(true);
-        opc.setLocationRelativeTo(null);
+        MenuCarro carro = new MenuCarro();
+        carro.setVisible(true);
+        carro.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_BtSalirActionPerformed
 
     private void BtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarActionPerformed
-        String query = "SELECT * FROM Auto WHERE";
+        String query = "SELECT Auto.Placa, Auto.Marca, Auto.Modelo, Auto.Año, Auto.Disponibilidad, Auto.IdSede, Costo.CostoPorDia FROM Auto, Costo WHERE Auto.Marca = Costo.Marca AND Auto.Modelo = Costo.Modelo AND Auto.Año = Costo.Año AND ";
         if(!"".equals(Placa.getText())){
             query += " Placa = \"" + Placa.getText() + "\" AND ";
         }
         if(!Marca.getSelectedItem().equals("--Seleccione--")){
             if(Marca.getSelectedItem().equals("Otro")){
                 if(!Otro.getText().equals("")){
-                    query += " Marca = \"" + Otro.getText() + "\" AND ";
+                    query += " Auto.Marca = \"" + Otro.getText() + "\" AND ";
                 }
             }else{
-                query += " Marca = \"" + Marca.getSelectedItem() + "\" AND ";
+                query += " Auto.Marca = \"" + Marca.getSelectedItem() + "\" AND ";
             }
         }
         try{
             if(!Modelo.getSelectedItem().equals("--Seleccione--")){
                 if(Modelo.getSelectedItem().equals("Otro")){
                     if(!OtroM.getText().equals("")){
-                        query += " Modelo = \"" + OtroM.getText() + "\" AND ";
+                        query += " Auto.Modelo = \"" + OtroM.getText() + "\" AND ";
                     }
                 }else{
-                    query += " Modelo = \"" + Modelo.getSelectedItem() + "\" AND ";
+                    query += " Auto.Modelo = \"" + Modelo.getSelectedItem() + "\" AND ";
                 }
             }
         }catch(java.lang.NullPointerException npe){
         }
         if(!Desde.getText().equals("")){
-            query += " Año >= " + Desde.getText() + " AND ";
+            query += " Auto.Año >= " + Desde.getText() + " AND ";
         }
         if(!Hasta.getText().equals("")){
-            query += " Año <= " + Hasta.getText() + " AND ";
+            query += " Auto.Año <= " + Hasta.getText() + " AND ";
         }
         if(!Ubicacion.getSelectedItem().equals("--Seleccione--")){
-            query += " IdSede = " + Ubicacion.getSelectedItem() + " AND ";
+            query += " Auto.IdSede = " + Ubicacion.getSelectedItem() + " AND ";
+        }
+        
+        if(!Ubicacion.getSelectedItem().equals("--Seleccione--")){
+            query += " Auto.IdSede = " + Ubicacion.getSelectedItem() + " AND ";
+        }
+        
+        if(!DesdeC.getText().equals("")){
+            query += "Costo.CostoPorDia >= " + DesdeC.getText() + " AND ";
+        }
+        if(!HastaC.getText().equals("")){
+            query += "Costo.CostoPorDia <= " + HastaC.getText() + " AND ";
+        }
+        if(DisponiblesA.isSelected()){
+            query += "Auto.Disponibilidad = \"true\" AND ";
         }
         if (query.substring(query.length() - 2).equals("D ")){
             query = query.substring(0, query.length() - 5);
@@ -311,72 +346,6 @@ public class Carro extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_BtBuscarActionPerformed
-
-    private void BtAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtAgregarActionPerformed
-        String PlacaS;
-        String MarcaS;
-        String ModeloS;
-        String AnoS;
-        String IdSede;
-        try{
-        if(!"".equals(Placa.getText())){
-            throw new Exception();
-        }
-        PlacaS = "\"" + Placa.getText() + "\"";
-        if(!Marca.getSelectedItem().equals("--Seleccione--")){
-            if(Marca.getSelectedItem().equals("Otro")){
-                if(!Otro.getText().equals("")){
-                    MarcaS = "\"" + Otro.getText() + "\"";
-                }else{
-                    throw new Exception();
-                }
-            }else{
-                MarcaS = "\"" + Otro.getText() + "\"";
-            }
-        }else{
-            throw new Exception();
-        }
-        try{
-            if(!Modelo.getSelectedItem().equals("--Seleccione--")){
-                if(Modelo.getSelectedItem().equals("Otro")){
-                    if(!OtroM.getText().equals("")){
-                        ModeloS = "\"" + OtroM.getText()+ "\"";
-                    }else{
-                        throw new Exception();
-                    }
-                }else{
-                    ModeloS ="\""+  OtroM.getText()+ "\"";
-                }
-            }else{
-                throw new Exception();
-            }
-        }catch(java.lang.NullPointerException npe){
-            throw new Exception();
-        }
-        if(!Desde.getText().equals(Hasta.getText().equals(""))){
-            throw new Exception();
-        }
-        AnoS = Desde.getText().toString();
-        if(!Ubicacion.getSelectedItem().equals("--Seleccione--")){
-            IdSede = Ubicacion.getSelectedItem().toString();
-        }else{
-            throw new Exception();
-        }
-        String query = "Insert Into Auto (Placa, Marca, Modelo, Año, IdSede) Values (" + PlacaS + ", " + MarcaS + ", " + ModeloS + ", " + AnoS + ", " + IdSede;
-        try{
-            Statement cmd = Conexion.link.createStatement();
-            ResultSet rs = cmd.executeQuery(query);
-            DefaultTableModel table = Conexion.buildTableModel(rs);
-            JTable tabla = new JTable(table);
-            JOptionPane.showMessageDialog(null, new JScrollPane(tabla));
-        }catch(Exception e){
-            System.out.println(query);
-            System.out.println(e.getMessage());
-        }
-        }catch(Exception e){
-            
-        }
-    }//GEN-LAST:event_BtAgregarActionPerformed
 
     private void MarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MarcaActionPerformed
         String seleccion = Marca.getSelectedItem().toString();
@@ -431,20 +400,28 @@ public class Carro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_HastaActionPerformed
 
+    private void HastaCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HastaCActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HastaCActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtAgregar;
     private javax.swing.JButton BtBuscar;
     private javax.swing.JButton BtSalir;
     private javax.swing.JTextField Desde;
+    private javax.swing.JTextField DesdeC;
+    private javax.swing.JCheckBox DisponiblesA;
     private javax.swing.JTextField Hasta;
+    private javax.swing.JTextField HastaC;
     private javax.swing.JComboBox Marca;
     private javax.swing.JComboBox Modelo;
     private javax.swing.JTextField Otro;
     private javax.swing.JTextField OtroM;
     private javax.swing.JTextField Placa;
     private javax.swing.JComboBox Ubicacion;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

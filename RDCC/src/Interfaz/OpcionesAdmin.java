@@ -88,7 +88,7 @@ public class OpcionesAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtCarrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtCarrosActionPerformed
-        Carro carro = new Carro();
+        MenuCarro carro = new MenuCarro();
         carro.setVisible(true);
         carro.setLocationRelativeTo(null);
         this.dispose();
