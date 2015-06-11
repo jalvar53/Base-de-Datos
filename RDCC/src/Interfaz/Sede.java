@@ -9,8 +9,6 @@ import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 public class Sede extends javax.swing.JFrame {
 
@@ -149,7 +147,8 @@ public class Sede extends javax.swing.JFrame {
             stmt = Conexion.link.createStatement();
             rs = stmt.executeQuery(getQuery());
             JTable table = new JTable(Conexion.buildTableModel(rs));
-            JOptionPane.showMessageDialog(null, new JScrollPane(table));
+            Resultados resultado;
+            resultado = new Resultados(table);
         }
         catch(SQLException e){
             System.out.println(e.getMessage());

@@ -185,7 +185,8 @@ public class Cliente extends javax.swing.JFrame {
             stmt = Conexion.link.createStatement();
             rs = stmt.executeQuery(getQuery());
             JTable table = new JTable(Conexion.buildTableModel(rs));
-            JOptionPane.showMessageDialog(null, new JScrollPane(table));
+            Resultados resultado;
+            resultado = new Resultados(table);
         }
         catch(SQLException e){
             System.out.println(e.getMessage());
