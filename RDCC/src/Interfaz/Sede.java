@@ -3,6 +3,7 @@ package Interfaz;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 public class Sede extends javax.swing.JFrame {
 
@@ -11,14 +12,13 @@ public class Sede extends javax.swing.JFrame {
     ResultSet rs = null;
     
     public Sede() {
-        
         setUndecorated(true); 
         initComponents();
     }
     @SuppressWarnings("unchecked")
     
     public String getQuery(){
-        String query = "SELECT * FROM sql379747.Sede WHERE";
+        String query = "SELECT * FROM Sede WHERE";
         if(!IdSedeTxtField.getText().isEmpty()){
             query = query + "IdSede = " + "'" + IdSedeTxtField.getText() + "'" + " AND";
         }
@@ -144,10 +144,26 @@ public class Sede extends javax.swing.JFrame {
             rs = stmt.executeQuery(getQuery());
         }
         catch(SQLException e){
-        }        
+            System.out.println(e.getMessage());
+        }       
+      
     }//GEN-LAST:event_BtBuscarActionPerformed
 
     private void BtNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtNuevaActionPerformed
+        ResultSet RS = null;
+        try{            
+            if(IdSedeTxtField.getText().isEmpty() && !DireccionTxtField.getText().isEmpty() && !TelefonoTxtField.getText().isEmpty()){
+            rs = stmt.executeQuery("SELECT * FROM Sede WHERE Direccion = "+ "'" + DireccionTxtField.getText() + "'" + " AND "+ "Telefono =" + "'" + TelefonoTxtField.getText() + "'");
+                if(rs == null){
+                    RS = stmt.executeQuery("INSERT INTO Sede (Direccion, Telefono) VALUES (" + TelefonoTxtField.getText() + "," + DireccionTxtField.getText() + ")");
+                }
+                else{
+                    showMessageDialog(null, "Esta sede ya existe");
+                }
+            }
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_BtNuevaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
