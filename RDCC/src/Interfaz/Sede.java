@@ -35,10 +35,10 @@ public class Sede extends javax.swing.JFrame {
             query = query + "Telefono = " + "'" + TelefonoTxtField.getText() + "'" + " AND";
         }
         if(!IdSedeTxtField.getText().isEmpty() || !DireccionTxtField.getText().isEmpty() || !TelefonoTxtField.getText().isEmpty()){
-            query = query.substring(0, query.length()-4);
+            query = query.substring(0, query.length()-3);
         }
         else{
-            query = query.substring(0, query.length()-6);
+            query = query.substring(0, query.length()-5);
         }
         return query;
     }      
@@ -53,7 +53,7 @@ public class Sede extends javax.swing.JFrame {
         TelefonoTxtField = new javax.swing.JTextField();
         BtBuscar = new javax.swing.JButton();
         BtSalir = new javax.swing.JButton();
-        BtNueva = new javax.swing.JButton();
+        BtCrear = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,10 +77,10 @@ public class Sede extends javax.swing.JFrame {
             }
         });
 
-        BtNueva.setText("Nueva");
-        BtNueva.addActionListener(new java.awt.event.ActionListener() {
+        BtCrear.setText("Crear");
+        BtCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtNuevaActionPerformed(evt);
+                BtCrearActionPerformed(evt);
             }
         });
 
@@ -104,9 +104,9 @@ public class Sede extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TelefonoTxtField))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(BtNueva)
+                        .addComponent(BtCrear)
                         .addGap(18, 18, 18)
-                        .addComponent(BtBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                        .addComponent(BtBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(BtSalir)))
                 .addContainerGap())
@@ -130,7 +130,7 @@ public class Sede extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtBuscar)
                     .addComponent(BtSalir)
-                    .addComponent(BtNueva))
+                    .addComponent(BtCrear))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -157,13 +157,13 @@ public class Sede extends javax.swing.JFrame {
       
     }//GEN-LAST:event_BtBuscarActionPerformed
 
-    private void BtNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtNuevaActionPerformed
+    private void BtCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtCrearActionPerformed
         ResultSet RS = null;
         try{            
             if(IdSedeTxtField.getText().isEmpty() && !DireccionTxtField.getText().isEmpty() && !TelefonoTxtField.getText().isEmpty()){
             rs = stmt.executeQuery("SELECT * FROM Sede WHERE Direccion = "+ "'" + DireccionTxtField.getText() + "'" + " AND "+ "Telefono =" + "'" + TelefonoTxtField.getText() + "'");
                 if(rs == null){
-                    RS = stmt.executeQuery("INSERT INTO Sede (Direccion, Telefono) VALUES (" + TelefonoTxtField.getText() + "," + DireccionTxtField.getText() + ")");
+                    RS = stmt.executeQuery("INSERT INTO Sede (Direccion, Telefono) VALUES (" + "'" + TelefonoTxtField.getText() + "'" + "," + "'" + DireccionTxtField.getText() + "'" + ")");
                 }
                 else{
                     showMessageDialog(null, "Esta sede ya existe");
@@ -175,11 +175,11 @@ public class Sede extends javax.swing.JFrame {
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }
-    }//GEN-LAST:event_BtNuevaActionPerformed
+    }//GEN-LAST:event_BtCrearActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtBuscar;
-    private javax.swing.JButton BtNueva;
+    private javax.swing.JButton BtCrear;
     private javax.swing.JButton BtSalir;
     private javax.swing.JTextField DireccionTxtField;
     private javax.swing.JTextField IdSedeTxtField;

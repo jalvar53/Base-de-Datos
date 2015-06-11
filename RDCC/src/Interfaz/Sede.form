@@ -43,9 +43,9 @@
                       <Component id="TelefonoTxtField" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="BtNueva" min="-2" max="-2" attributes="0"/>
+                      <Component id="BtCrear" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="BtBuscar" pref="99" max="32767" attributes="0"/>
+                      <Component id="BtBuscar" pref="104" max="32767" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="BtSalir" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -76,7 +76,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="BtBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="BtSalir" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="BtNueva" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="BtCrear" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -121,12 +121,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtSalirActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="BtNueva">
+    <Component class="javax.swing.JButton" name="BtCrear">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nueva"/>
+        <Property name="text" type="java.lang.String" value="Crear"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtNuevaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtCrearActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
