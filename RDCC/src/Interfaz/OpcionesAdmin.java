@@ -14,6 +14,7 @@ public class OpcionesAdmin extends javax.swing.JFrame {
         BtSedes = new javax.swing.JButton();
         BtClientes = new javax.swing.JButton();
         BtSalir = new javax.swing.JButton();
+        BtRenta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -46,6 +47,13 @@ public class OpcionesAdmin extends javax.swing.JFrame {
             }
         });
 
+        BtRenta.setText("Historial");
+        BtRenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtRentaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -56,7 +64,8 @@ public class OpcionesAdmin extends javax.swing.JFrame {
                     .addComponent(BtSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BtClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                     .addComponent(BtSedes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BtCarros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(BtCarros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BtRenta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -68,9 +77,11 @@ public class OpcionesAdmin extends javax.swing.JFrame {
                 .addComponent(BtSedes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BtClientes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BtRenta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BtSalir)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -104,9 +115,14 @@ public class OpcionesAdmin extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_BtSalirActionPerformed
 
+    private void BtRentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtRentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtRentaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtCarros;
     private javax.swing.JButton BtClientes;
+    private javax.swing.JButton BtRenta;
     private javax.swing.JButton BtSalir;
     private javax.swing.JButton BtSedes;
     // End of variables declaration//GEN-END:variables
