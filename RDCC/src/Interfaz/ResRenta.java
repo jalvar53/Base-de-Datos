@@ -120,10 +120,15 @@ public class ResRenta extends javax.swing.JFrame {
         int seleccion = table.getSelectedRow();
         if(seleccion != -1){
             if(table.getValueAt(seleccion, 4).toString().equals("true")){
-                
+                FormularioRenta formulario = new FormularioRenta(table.getValueAt(seleccion, 0).toString());
+                formulario.setVisible(true);
+                formulario.setLocationRelativeTo(null);
+                this.dispose();
             }else{
                 JOptionPane.showMessageDialog(null, "Auto no disponible");
             }
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccione un Auto");
         }
     }//GEN-LAST:event_RentarActionPerformed
 

@@ -44,6 +44,11 @@ public class Cliente extends javax.swing.JFrame {
         jLabel1.setText("Tipo de Identificacion:");
 
         TipoId.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cedula", "Pasaporte", "T.I." }));
+        TipoId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TipoIdActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Identificacion:");
 
@@ -215,6 +220,10 @@ public class Cliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Se deben llenar todos los parametros");
         }
     }//GEN-LAST:event_BtCrearActionPerformed
+
+    private void TipoIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TipoIdActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Apellido;
