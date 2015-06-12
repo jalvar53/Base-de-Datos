@@ -11,17 +11,18 @@ public class OpcionesAdmin extends javax.swing.JFrame {
 
     public OpcionesAdmin() {
         initComponents();
+        
     }
 
     @SuppressWarnings("unchecked")
     
     public void ActualizarCarros(){
         try{
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = new Date();
-            String query = "SELECT Placa FROM Renta WHERE `Fecha Ini` >= CURTIME() AS A; UPDATE Auto SET Disponible = true WHERE Auto.Placa = A.Placa";
+            String update = "UPDATE Auto SET Disponibilidad = 'true'";
+            String actualizar = "UPDATE Auto, (SELECT Auto.Placa FROM Auto, Renta WHERE Renta.`Fecha Fin` > CURRENT_DATE() AND Renta.Placa = Auto.Placa) AS A SET Auto.Disponibilidad = 'false' WHERE Auto.Placa = A.Placa;";
             Statement stmt = Conexion.link.createStatement();
-            stmt.executeQuery(query);            
+            stmt.executeUpdate(update);
+            stmt.executeUpdate(actualizar);
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }
