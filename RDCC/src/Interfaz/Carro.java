@@ -3,8 +3,6 @@ package Interfaz;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -77,12 +75,6 @@ public class Carro extends javax.swing.JFrame {
             }
         });
 
-        Placa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PlacaActionPerformed(evt);
-            }
-        });
-
         jLabel1.setText("Placa:");
 
         jLabel2.setText("Marca:");
@@ -95,20 +87,9 @@ public class Carro extends javax.swing.JFrame {
 
         jLabel6.setText("Hasta:");
 
-        Hasta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                HastaActionPerformed(evt);
-            }
-        });
-
         jLabel7.setText("Ubicación:");
 
         DisponiblesA.setText("Sólo mostrar autos disponibles");
-        DisponiblesA.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DisponiblesAActionPerformed(evt);
-            }
-        });
 
         BtSalir.setText("Salir");
         BtSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -132,12 +113,6 @@ public class Carro extends javax.swing.JFrame {
 
         jLabel8.setText("Cual");
 
-        Otro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                OtroActionPerformed(evt);
-            }
-        });
-
         jLabel9.setText("Cual");
 
         jLabel10.setText("Costo");
@@ -145,12 +120,6 @@ public class Carro extends javax.swing.JFrame {
         jLabel11.setText("Desde");
 
         jLabel12.setText("Hasta");
-
-        HastaC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                HastaCActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -264,14 +233,6 @@ public class Carro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void PlacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlacaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PlacaActionPerformed
-
-    private void DisponiblesAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DisponiblesAActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DisponiblesAActionPerformed
-
     private void BtSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtSalirActionPerformed
         MenuCarro carro = new MenuCarro();
         carro.setVisible(true);
@@ -338,7 +299,8 @@ public class Carro extends javax.swing.JFrame {
             ResultSet rs = cmd.executeQuery(query);
             DefaultTableModel table = Conexion.buildTableModel(rs);
             JTable tabla = new JTable(table);
-            JOptionPane.showMessageDialog(null, new JScrollPane(tabla));
+            Resultados resultado = new Resultados(tabla);
+            resultado.setLocationRelativeTo(null);
         }catch(Exception e){
             System.out.println(query);
             System.out.println(e.getMessage());
@@ -391,18 +353,6 @@ public class Carro extends javax.swing.JFrame {
             OtroM.setText("");
         }
     }//GEN-LAST:event_ModeloActionPerformed
-
-    private void OtroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OtroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_OtroActionPerformed
-
-    private void HastaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HastaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_HastaActionPerformed
-
-    private void HastaCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HastaCActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_HastaCActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtBuscar;

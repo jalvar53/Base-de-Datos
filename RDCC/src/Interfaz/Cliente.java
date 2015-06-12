@@ -167,13 +167,6 @@ public class Cliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtSalirActionPerformed
-        if(Conexion.link != null){
-            try {
-                Conexion.link.close();
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Error al desconectar");
-            }
-        }
         OpcionesAdmin opc = new OpcionesAdmin();
         opc.setVisible(true);
         opc.setLocationRelativeTo(null);

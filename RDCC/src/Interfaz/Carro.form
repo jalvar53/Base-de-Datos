@@ -170,9 +170,6 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="Placa">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PlacaActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
@@ -207,9 +204,6 @@
     <Component class="javax.swing.JTextField" name="Desde">
     </Component>
     <Component class="javax.swing.JTextField" name="Hasta">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="HastaActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="Ubicacion">
       <Properties>
@@ -227,9 +221,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="S&#xf3;lo mostrar autos disponibles"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DisponiblesAActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BtSalir">
       <Properties>
@@ -263,9 +254,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="Otro">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="OtroActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
@@ -292,9 +280,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="HastaC">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="HastaCActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>
