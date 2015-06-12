@@ -7,8 +7,12 @@ package Interfaz;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,6 +27,16 @@ public class FormularioRenta extends javax.swing.JFrame {
     public FormularioRenta(String placa) {
         initComponents();
         this.placa = placa;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String Fecha = "2015-06-12";
+        Date fecha;
+        try {
+            fecha = sdf.parse(Fecha);
+            FRenta.setDate(fecha);
+            FRetorno.setDate(fecha);
+        } catch (ParseException ex) {
+            Logger.getLogger(FormularioRenta.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -234,7 +248,7 @@ public class FormularioRenta extends javax.swing.JFrame {
     }//GEN-LAST:event_CancelarActionPerformed
 
     private void RentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RentarActionPerformed
-        if(!Identificacion.getText().equals("") && !Nombre.getText().equals("") && !Apellido.getText().equals("") && !Telefono.getText().equals("") && !Correo.getText().equals("") && !Direccion.getText().equals("") && !FRenta.getDateFormatString().equals("") && !FRetorno.getDateFormatString().equals("")){
+        if(!Identificacion.getText().equals("") && !Nombre.getText().equals("") && !Apellido.getText().equals("") && !Telefono.getText().equals("") && !Correo.getText().equals("") && !Direccion.getText().equals("")){
             try{
                 boolean a = true;
                 Statement stmt = Conexion.link.createStatement();
