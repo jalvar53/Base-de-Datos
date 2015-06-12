@@ -3,8 +3,6 @@ package Interfaz;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -292,8 +290,10 @@ public class Carro extends javax.swing.JFrame {
         }
         if (query.substring(query.length() - 2).equals("D ")){
             query = query.substring(0, query.length() - 5);
+            query += " FOR UPDATE";
         }else{
             query = query.substring(0, query.length() - 6);
+            query += " FOR UPDATE";
         }
         try{
             Statement cmd = Conexion.link.createStatement();
