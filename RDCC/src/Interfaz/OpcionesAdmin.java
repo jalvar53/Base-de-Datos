@@ -1,5 +1,12 @@
 package Interfaz;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class OpcionesAdmin extends javax.swing.JFrame {
 
     public OpcionesAdmin() {
@@ -7,6 +14,18 @@ public class OpcionesAdmin extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
+    
+    public void ActualizarCarros(){
+        try{
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = new Date();
+            String query = "SELECT Placa FROM Renta WHERE `Fecha Ini` >= CURTIME() AS A; UPDATE Auto SET Disponible = true WHERE Auto.Placa = A.Placa";
+            Statement stmt = Conexion.link.createStatement();
+            stmt.executeQuery(query);            
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 

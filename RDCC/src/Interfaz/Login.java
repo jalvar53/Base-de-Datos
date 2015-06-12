@@ -123,6 +123,7 @@ public class Login extends javax.swing.JFrame {
                 OpcionesAdmin opc = new OpcionesAdmin();
                 opc.setVisible(true);
                 opc.setLocationRelativeTo(null);
+                opc.ActualizarCarros();
                 this.dispose();
             }catch(Exception e){
                 LabelNombre.setText("Nombre de usuario o contraseña incorrectas");
