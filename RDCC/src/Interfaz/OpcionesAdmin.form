@@ -28,7 +28,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="BtSalir" max="32767" attributes="0"/>
-                  <Component id="BtClientes" alignment="0" pref="129" max="32767" attributes="0"/>
+                  <Component id="BtClientes" alignment="0" pref="134" max="32767" attributes="0"/>
                   <Component id="BtSedes" max="32767" attributes="0"/>
                   <Component id="BtCarros" alignment="0" max="32767" attributes="0"/>
                   <Component id="BtRenta" alignment="1" max="32767" attributes="0"/>

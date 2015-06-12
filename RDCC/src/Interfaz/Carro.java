@@ -240,6 +240,7 @@ public class Carro extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_BtSalirActionPerformed
 
+    @SuppressWarnings("empty-statement")
     private void BtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarActionPerformed
         String query = "SELECT Auto.Placa, Auto.Marca, Auto.Modelo, Auto.Año, Auto.Disponibilidad, Auto.IdSede, Costo.CostoPorDia FROM Auto, Costo WHERE Auto.Marca = Costo.Marca AND Auto.Modelo = Costo.Modelo AND Auto.Año = Costo.Año AND ";
         if(!"".equals(Placa.getText())){
@@ -299,8 +300,9 @@ public class Carro extends javax.swing.JFrame {
             ResultSet rs = cmd.executeQuery(query);
             DefaultTableModel table = Conexion.buildTableModel(rs);
             JTable tabla = new JTable(table);
-            Resultados resultado = new Resultados(tabla);
+            ResRenta resultado = new ResRenta(tabla);
             resultado.setLocationRelativeTo(null);
+            resultado.setVisible(true);
         }catch(Exception e){
             System.out.println(query);
             System.out.println(e.getMessage());
