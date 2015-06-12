@@ -245,11 +245,6 @@ public class RentaCarro extends javax.swing.JFrame {
         if(Marca.getSelectedItem().equals("Otro")){
             if(!Otro.getText().equals("")){
                 MarcaS = "'" + Otro.getText() + "'";
-                Statement cmd = Conexion.link.createStatement();
-                ResultSet rs = cmd.executeQuery("SELECT Marca FROM Costo WHERE Marca = " + MarcaS);
-                if(rs.getRow()==0){
-                    insC = true;
-                }
             }else{
                 throw new Exception("Marca no ingresada");
             }
@@ -260,13 +255,6 @@ public class RentaCarro extends javax.swing.JFrame {
             if(Modelo.getSelectedItem().equals("Otro")){
                 if(!OtroM.getText().equals("")){
                     ModeloS = "'" + OtroM.getText()+ "'";
-                    if(!insC){
-                        Statement cmd = Conexion.link.createStatement();
-                        ResultSet rs = cmd.executeQuery("SELECT Modelo FROM Costo WHERE Modelo = " + ModeloS);
-                        if(rs.getRow()==0){
-                            insC = true;
-                        }
-                    }
                 }else{
                     throw new Exception("Modelo no ingresado");
                 }
@@ -287,15 +275,13 @@ public class RentaCarro extends javax.swing.JFrame {
             throw new Exception("Ingrese un año");
         }
         try{
-            if(insC){
-                if(!Costo.getText().equals("")){
-                    try{
-                        Statement actCost = Conexion.link.createStatement();
-                        String query ="Insert Into Costo (Marca, Modelo, Año, CostoPorDia) Values (" + MarcaS + ", " + ModeloS + ", " + AnoS + ", " + Costo.getText() + ")";
-                        actCost.executeUpdate(query);
-                    }catch(Exception e){
-                        System.out.println(e.getMessage());
-                    }
+            if(!Costo.getText().equals("")){
+                try{
+                    Statement actCost = Conexion.link.createStatement();
+                    String query ="Insert Into Costo (Marca, Modelo, Año, CostoPorDia) Values (" + MarcaS + ", " + ModeloS + ", " + AnoS + ", " + Costo.getText() + ")";
+                    actCost.executeUpdate(query);
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, "Ya se tiene un costo a esta referencia. Se continuara con el precio de la base de datos");
                 }
             }
         }catch(java.lang.NullPointerException npe){
@@ -335,7 +321,6 @@ public class RentaCarro extends javax.swing.JFrame {
         Modelo.removeAllItems();
         if(seleccion.equals("Otro")){
             Otro.setEditable(true);
-            Costo.setEditable(true);
             Modelo.addItem("Otro");
             Modelo.setSelectedItem("Otro");
         }else{
@@ -352,7 +337,6 @@ public class RentaCarro extends javax.swing.JFrame {
                 OtroM.setEditable(true);
                 Otro.setEditable(false);
                 Otro.setText("");
-                Costo.setEditable(true);
             } catch (SQLException ex) {
                 System.out.println("Error en query " + ex.getMessage());
             }
@@ -364,12 +348,9 @@ public class RentaCarro extends javax.swing.JFrame {
             String seleccion = Modelo.getSelectedItem().toString();
             if(seleccion.equals("Otro")){
                 OtroM.setEditable(true);
-                Costo.setEditable(true);
             }else{
                 OtroM.setEditable(false);
                 OtroM.setText("");
-                Costo.setEditable(false);
-                Costo.setText("");
             }
         }catch(java.lang.NullPointerException npe){
             OtroM.setEditable(false);
