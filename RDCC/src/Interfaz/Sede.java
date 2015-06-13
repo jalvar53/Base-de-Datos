@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JTable;
 
+//Clase para la interfaz gráfica y el manejo de las Sedes en la base de datos.
 public class Sede extends javax.swing.JFrame {
 
     Statement stmt = null;
@@ -17,7 +18,9 @@ public class Sede extends javax.swing.JFrame {
     }
     @SuppressWarnings("unchecked")
     
+    //Método que hace la búsqueda de la Sede específicada en los campos.
     public String getQuery(){
+        //Se va concatenando al String la sintaxis SQL para pasar los parametros especificados.
         query = "SELECT * FROM Sede WHERE ";
         if(!IdSedeTxtField.getText().isEmpty()){
             query = query + "`IdSede` = " + "'" + IdSedeTxtField.getText() + "'" + " AND ";
@@ -28,6 +31,7 @@ public class Sede extends javax.swing.JFrame {
         if(!TelefonoTxtField.getText().isEmpty()){
             query = query + "`Telefono` = " + "'" + TelefonoTxtField.getText() + "'" + " AND ";
         }
+        //Se eliminan el "AND" o el "WHERE" sobrante al final, dependiendo de los campos llenados.
         if(!IdSedeTxtField.getText().isEmpty() || !DireccionTxtField.getText().isEmpty() || !TelefonoTxtField.getText().isEmpty()){
             query = query.substring(0, query.length()-4);
         }
@@ -131,6 +135,7 @@ public class Sede extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Botón usado para salir del menú de Sedes y volver al menú de opciones.
     private void BtSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtSalirActionPerformed
         OpcionesAdmin opc = new OpcionesAdmin();
         opc.setVisible(true);
@@ -138,11 +143,13 @@ public class Sede extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_BtSalirActionPerformed
 
+    //Botón para efectuar la búsqueda con los datos especificados,
+    //Genera la tabla resultado de la búsqueda y la muestra en una ventana.
     private void BtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarActionPerformed
         try{
-            stmt = Conexion.link.createStatement();
-            rs = stmt.executeQuery(getQuery());
-            JTable table = new JTable(Conexion.buildTableModel(rs));
+            stmt = Conexion.link.createStatement(); //Crea un Statement SQL
+            rs = stmt.executeQuery(getQuery()); //Ejecuta el Statement con la consulta respectiva
+            JTable table = new JTable(Conexion.buildTableModel(rs)); //Crea una tabla y le pasa como parametro el resultado de la búsqueda
             Resultados resultado;
             resultado = new Resultados(table);
             resultado.setLocationRelativeTo(null);
@@ -153,8 +160,10 @@ public class Sede extends javax.swing.JFrame {
       
     }//GEN-LAST:event_BtBuscarActionPerformed
 
+    //Botón para crear un nuevo registro de una nueva Sede en la base de datos.
     private void BtCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtCrearActionPerformed
         try{            
+            //Solo se crea el nuevo registro si el IdSede esta vacío y Telefono y Direccion estan llenos.
             if(IdSedeTxtField.getText().isEmpty() && !DireccionTxtField.getText().isEmpty() && !TelefonoTxtField.getText().isEmpty()){
             stmt = Conexion.link.createStatement();
             rs = stmt.executeQuery("SELECT * FROM Sede WHERE Direccion = "+ "'" + DireccionTxtField.getText() + "'" + " AND "+ "Telefono = " + "'" + TelefonoTxtField.getText() + "'");

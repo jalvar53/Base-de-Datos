@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
+//Clase para la verificación de usuario para la entrada a la Base de datos.
 public class Login extends javax.swing.JFrame {
 
     public Login() {
@@ -93,7 +94,8 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    //Botón que usa los parámetros pasados de contraseña y nombre de usuario al host.
+    //Indica también si los datos no son aceptados.
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(Username.getText().isEmpty()){
             LabelNombre.setText("Nombre de Usuario:*");
@@ -104,6 +106,7 @@ public class Login extends javax.swing.JFrame {
         }
         else{
             try{
+                //Crea una nueva conexion y le pasa como parametros nombre de usuario y contraseña.
                 Conexion mysql = new Conexion();
                 mysql.setUser(Username.getText());
                 mysql.setPass(Password.getText());
@@ -119,7 +122,8 @@ public class Login extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
+    //Botón que cierra la conexión y el programa.
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
         if(Conexion.link != null){
             try {

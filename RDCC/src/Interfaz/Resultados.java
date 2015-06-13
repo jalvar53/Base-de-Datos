@@ -9,8 +9,11 @@ import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
+//Clase para generar la tabla de SQL y mostrarla en una ventana.
 public class Resultados extends javax.swing.JFrame {
 
+    //Constructor que crea un JFrame y un JPanel con un JTable como parametro
+    //Muestra la tabla resultante en el JFrame.
     public Resultados(JTable jTable) {
         initComponents();
         JFrame frame = new JFrame("Resultados de Búsqueda");
@@ -47,6 +50,9 @@ public class Resultados extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
+    
+    //Método que acomoda la ventana del tamaño de las columnas de la tabla.
+    //Código original tomado de: "http://stackoverflow.com/questions/17627431/auto-resizing-the-jtable-column-widths"
     private void resizeColumnWidth(JTable table) {
         final TableColumnModel columnModel = table.getColumnModel();
         for (int column = 0; column < table.getColumnCount(); column++) {

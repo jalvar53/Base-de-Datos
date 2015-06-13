@@ -1,5 +1,6 @@
 package Interfaz;
 
+//Clase para el menú de carro: Rentar Carro o Crear Carro (Nuevo Registro)
 public class MenuCarro extends javax.swing.JFrame {
 
     public MenuCarro() {
@@ -63,7 +64,8 @@ public class MenuCarro extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    //Botón para abrir la ventana que permite Rentar un Carro.
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         RentaCarro carro = new RentaCarro();
         carro.setVisible(true);
@@ -71,6 +73,7 @@ public class MenuCarro extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    //Botón para abrir la ventana que permite registrar un carro nuevo.
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Carro carro = new Carro();
         carro.setVisible(true);
@@ -78,6 +81,7 @@ public class MenuCarro extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    //Botón que permite regresar al menú principal.
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         OpcionesAdmin opc = new OpcionesAdmin();
         opc.setVisible(true);

@@ -3,6 +3,7 @@ package Interfaz;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+//Menú principal de la aplicación, permite la navegación entre opciones.
 public class OpcionesAdmin extends javax.swing.JFrame {
 
     public OpcionesAdmin() {
@@ -12,6 +13,8 @@ public class OpcionesAdmin extends javax.swing.JFrame {
 
     @SuppressWarnings("unchecked")
     
+    //Método para actualizar los registros de autos con fecha de entrega en la fecha final
+    //Se ejecuta al hacer el login.
     public void ActualizarCarros(){
         try{
             String update = "UPDATE Auto SET Disponibilidad = 'true'";
@@ -103,6 +106,7 @@ public class OpcionesAdmin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Botón para abrir la ventana del menú de carros.
     private void BtCarrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtCarrosActionPerformed
         MenuCarro carro = new MenuCarro();
         carro.setVisible(true);
@@ -110,6 +114,7 @@ public class OpcionesAdmin extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_BtCarrosActionPerformed
 
+    //Botón para abrir la ventana del menú de sedes.
     private void BtSedesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtSedesActionPerformed
         Sede sede = new Sede();
         sede.setVisible(true);
@@ -117,6 +122,7 @@ public class OpcionesAdmin extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_BtSedesActionPerformed
 
+    //Botón para abrir la ventana del menú de clientes.
     private void BtClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtClientesActionPerformed
         Cliente cliente = new Cliente();
         cliente.setVisible(true);
@@ -124,6 +130,7 @@ public class OpcionesAdmin extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_BtClientesActionPerformed
 
+    //Botón para salir del menú principal y volver al login.
     private void BtSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtSalirActionPerformed
         Login login = new Login();
         login.setVisible(true);
@@ -131,6 +138,7 @@ public class OpcionesAdmin extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_BtSalirActionPerformed
 
+    //Botón para abrir la ventana del menú de rentas de carros.
     private void BtRentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtRentaActionPerformed
         Historial renta = new Historial();
         renta.setVisible(true);
