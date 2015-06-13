@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 public class Cliente extends javax.swing.JFrame {
-
+    //Clase para acceder a la informacion de la tabla Cliente, Permite consultar y agregar
     Statement stmt = null;
     ResultSet rs = null;
     
@@ -43,11 +43,6 @@ public class Cliente extends javax.swing.JFrame {
         jLabel1.setText("Tipo de Identificacion:");
 
         TipoId.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cedula", "Pasaporte", "T.I." }));
-        TipoId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TipoIdActionPerformed(evt);
-            }
-        });
 
         jLabel2.setText("Identificacion:");
 
@@ -171,32 +166,32 @@ public class Cliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtSalirActionPerformed
-        OpcionesAdmin opc = new OpcionesAdmin();
-        opc.setVisible(true);
-        opc.setLocationRelativeTo(null);
-        this.dispose();
+        OpcionesAdmin opc = new OpcionesAdmin(); //Crea el interfaz menu
+        opc.setVisible(true); //lo hace visible
+        opc.setLocationRelativeTo(null); //Lo ubica en el centro de la pantalla
+        this.dispose(); //Cierra este interfaz
     }//GEN-LAST:event_BtSalirActionPerformed
 
     private void BtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarActionPerformed
         try{
-            stmt = Conexion.link.createStatement();
-            rs = stmt.executeQuery(getQuery());
+            stmt = Conexion.link.createStatement(); //Crea un Statement 
+            rs = stmt.executeQuery(getQuery()); //Recibe un Query el cual depende de los datos llenados
             JTable table = new JTable(Conexion.buildTableModel(rs));
-            Resultados resultado;
-            resultado = new Resultados(table);
-            resultado.setLocationRelativeTo(null);
+            Resultados resultado = new Resultados(table); //Crea la interfaz de resultados
+            resultado.setLocationRelativeTo(null); //La ubica en el centro de la pantalla
         }
         catch(SQLException e){
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage()); //Atrapa y muestra cualquier error
         }  
     }//GEN-LAST:event_BtBuscarActionPerformed
 
     private void BtCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtCrearActionPerformed
         if(!(ID.getText().isEmpty())&&!(Nombre.getText().isEmpty())&&!(Apellido.getText().isEmpty())&&!(Telefono.getText().isEmpty())&&!(Correo.getText().isEmpty())&&!(Direccion.getText().isEmpty())){
+            //Revisa que se hallan llenado todos los parametros del formulario
             try{
             stmt = Conexion.link.createStatement();
             rs = stmt.executeQuery(getQuery());
-            if(!rs.isBeforeFirst()){
+            if(!rs.isBeforeFirst()){ //Revisa que no exista un registro con esos datos
                 try{
                 stmt = Conexion.link.createStatement();
                 stmt.executeUpdate("INSERT INTO `"
@@ -204,25 +199,23 @@ public class Cliente extends javax.swing.JFrame {
                         + "VALUES ('"+ID.getText()+"','"+String.valueOf(TipoId.getSelectedItem())+"','"+Nombre.getText()+"','"
                         + Apellido.getText()+"','"+ Telefono.getText() +"','"+Correo.getText()+"','"+Direccion.getText()+"')");
                 JOptionPane.showMessageDialog(null, "Creacion exitosa");
+                //Crea una nueva entrada en la tabla Cliente
                 }
                 catch(SQLException e){
-                    System.out.println(e.getMessage());
+                    System.out.println(e.getMessage()); //Atrapa y muestra cualquier error
                 }
-            } else {
+            } else { //En caso de que ya exista la entrada
                 JOptionPane.showMessageDialog(null, "Este registro ya existe");
             }
         }
         catch(SQLException e){
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage()); //Atrapa y muestra cualquier error
         } 
         } else{
-            JOptionPane.showMessageDialog(null, "Se deben llenar todos los parametros");
+            JOptionPane.showMessageDialog(null, "Se deben llenar todos los parametros"); 
+            //En caso de que algun campo este vacio
         }
     }//GEN-LAST:event_BtCrearActionPerformed
-
-    private void TipoIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TipoIdActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Apellido;
@@ -244,24 +237,24 @@ public class Cliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
 
-    private String getQuery() {
+    private String getQuery() { //Metodo que revisa cada campo y edita el Query para incluir la restriccion
        String query = "SELECT * FROM `Cliente` WHERE `Tipo de Identificacion` = '" + String.valueOf(TipoId.getSelectedItem()) + "' "; 
-       if(ID.getText().isEmpty() == false){
+       if(ID.getText().isEmpty() == false){ //El tipo de Id es olbigatorio entonces siempre se tiene esta condicion
            query += "AND `ID` = '" + ID.getText() + "' ";
        }
-       if(Nombre.getText().isEmpty() == false){
+       if(Nombre.getText().isEmpty() == false){ //Si escribio un nombre:
            query += "AND `Nombre` = '" + Nombre.getText() + "' ";
        }
-       if(Apellido.getText().isEmpty() == false){
+       if(Apellido.getText().isEmpty() == false){ //Si escribio un apellido:
            query += "AND `Apellido` = '" + Apellido.getText() + "' ";
        }
-       if(Telefono.getText().isEmpty() == false){
+       if(Telefono.getText().isEmpty() == false){ //Si escribio un telefono:
            query += "AND `Telefono` = '" + Telefono.getText() + "' ";
        }
-       if(Correo.getText().isEmpty() == false){
+       if(Correo.getText().isEmpty() == false){ //Si escribio un correo:
            query += "AND `Correo` = '" + Correo.getText() + "' ";
        }
-       if(Direccion.getText().isEmpty() == false){
+       if(Direccion.getText().isEmpty() == false){ //Si escribio una direccion:
            query += "AND `Direccion` = '" + Direccion.getText() + "' ";
        }
         System.out.println(query);
