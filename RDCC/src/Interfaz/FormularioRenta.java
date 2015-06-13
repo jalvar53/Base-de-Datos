@@ -12,10 +12,11 @@ import javax.swing.JOptionPane;
 public class FormularioRenta extends javax.swing.JFrame {
     private String placa;
     public FormularioRenta(String placa) {
+        //Se inicializan los calendarios con una fecha especifica
         initComponents();
         this.placa = placa;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String Fecha = "2015-06-12";
+        String Fecha = "2015-06-16";
         Date fecha;
         try {
             fecha = sdf.parse(Fecha);
@@ -198,6 +199,8 @@ public class FormularioRenta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
+        //Se busca en la base de datos un usuario con identificacion y tipo de identificacion iguales a los dados
+        //Se actualiza la informacion de los campos respecto al resultado
         if(!Identificacion.getText().equals("")){
             try{
                 Statement stmt = Conexion.link.createStatement();
@@ -218,10 +221,15 @@ public class FormularioRenta extends javax.swing.JFrame {
     }//GEN-LAST:event_BuscarActionPerformed
 
     private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
+        //Se cierra la ventana
         this.dispose();
     }//GEN-LAST:event_CancelarActionPerformed
 
     private void RentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RentarActionPerformed
+        //Verifica que todos los datos esten dados
+        //Verifica si es necesario crear un nuevo cliente en la base de datos o si este ya existe
+        //Se crea un nuevo registro en la tabla renta, como historial
+        //Se cambia el estado del auto 
         if(!Identificacion.getText().equals("") && !Nombre.getText().equals("") && !Apellido.getText().equals("") && !Telefono.getText().equals("") && !Correo.getText().equals("") && !Direccion.getText().equals("")){
             try{
                 boolean a = true;

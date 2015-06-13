@@ -253,7 +253,7 @@ public class RentaCarro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error en los datos suministrados, imposible realizar la operacion");
         }
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error en los datos dados");
         }
     }//GEN-LAST:event_AgregarActionPerformed
 

@@ -12,6 +12,7 @@ import javax.swing.table.TableColumnModel;
 public class ResRenta extends javax.swing.JFrame {
 
     public ResRenta(JTable table) {
+        //Se colocan los resultados de la busqueda de renta
         initComponents();
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         Panel.setLayout(new BorderLayout());
@@ -25,6 +26,7 @@ public class ResRenta extends javax.swing.JFrame {
     }
     JTable table;
     private void resizeColumnWidth(JTable table) {
+        //Se da el tamaño y el formato de la tabla
         this.table=table;
         final TableColumnModel columnModel = table.getColumnModel();
         for (int column = 0; column < table.getColumnCount(); column++) {
@@ -100,6 +102,7 @@ public class ResRenta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RentarActionPerformed
+        //Se crea una nueva instancia de FormularioRenta para obtener informacion de la renta que se hará
         int seleccion = table.getSelectedRow();
         if(seleccion != -1){
             if(table.getValueAt(seleccion, 4).toString().equals("true")){
@@ -116,6 +119,7 @@ public class ResRenta extends javax.swing.JFrame {
     }//GEN-LAST:event_RentarActionPerformed
 
     private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
+        //Se cierra la ventana
         this.dispose();
     }//GEN-LAST:event_CancelarActionPerformed
 

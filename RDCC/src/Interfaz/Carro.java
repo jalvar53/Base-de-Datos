@@ -3,6 +3,7 @@ package Interfaz;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -10,7 +11,8 @@ public class Carro extends javax.swing.JFrame {
     
     public Carro() {
         initComponents();
-        
+        //Se accede a la base de datos para ver las marcas registradas ya en esta y poderlas dar como opciones al usuario
+        //Se inicializan los checkbox con la opcion de "seleccione"
         try {
             Statement cmd = Conexion.link.createStatement();
             ResultSet rs = cmd.executeQuery("SELECT DISTINCT Marca FROM Auto");
@@ -233,6 +235,7 @@ public class Carro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void BtSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtSalirActionPerformed
+        //Se crea una nueva instancia de la ventana anterior, y se ciera esta
         MenuCarro carro = new MenuCarro();
         carro.setVisible(true);
         carro.setLocationRelativeTo(null);
@@ -241,6 +244,7 @@ public class Carro extends javax.swing.JFrame {
 
     @SuppressWarnings("empty-statement")
     private void BtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarActionPerformed
+        //Se comprueba la informacion en cada campo, y se le va sumando a el query
         String query = "SELECT Auto.Placa, Auto.Marca, Auto.Modelo, Auto.Año, Auto.Disponibilidad, Auto.IdSede, Costo.CostoPorDia FROM Auto, Costo WHERE Auto.Marca = Costo.Marca AND Auto.Modelo = Costo.Modelo AND Auto.Año = Costo.Año AND ";
         if(!"".equals(Placa.getText())){
             query += " Placa = \"" + Placa.getText() + "\" AND ";
@@ -296,6 +300,7 @@ public class Carro extends javax.swing.JFrame {
             query = query.substring(0, query.length() - 6);
             query += " FOR UPDATE";
         }
+        //Se ejecuta el query en la base de datos
         try{
             Statement cmd = Conexion.link.createStatement();
             ResultSet rs = cmd.executeQuery(query);
@@ -305,14 +310,14 @@ public class Carro extends javax.swing.JFrame {
             resultado.setLocationRelativeTo(null);
             resultado.setVisible(true);
         }catch(Exception e){
-            System.out.println(query);
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error en los datos suministrados, imposible realizar la operacion");
         }
         
         
     }//GEN-LAST:event_BtBuscarActionPerformed
     
     private void MarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MarcaActionPerformed
+        //Se actualiza la informacion en el checkbox de Modelo esto de acuerdo a los modelos registrados en la base de datos respecto a la marca seleccionada
         String seleccion = Marca.getSelectedItem().toString();
         Modelo.removeAllItems();
         if(seleccion.equals("Otro")){
@@ -337,12 +342,13 @@ public class Carro extends javax.swing.JFrame {
                 Otro.setEditable(false);
                 Otro.setText("");
             } catch (SQLException ex) {
-                System.out.println("Error en query " + ex.getMessage());
+                JOptionPane.showMessageDialog(null, "Error en los datos suministrados, imposible realizar la operacion");
             }
         }
     }//GEN-LAST:event_MarcaActionPerformed
 
     private void ModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModeloActionPerformed
+        //Se activa como editable el campo de texto en caso de que la opcion seleccionada sea "otro"
         try{
             String seleccion = Modelo.getSelectedItem().toString();
             if(seleccion.equals("Otro")){

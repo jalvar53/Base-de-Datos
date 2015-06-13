@@ -4,13 +4,15 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
 public class Conexion {
+    //Se definen los argumentos necesarios para la conexion
     public String db = "sql379747";
     public String url = "jdbc:mysql://sql3.freesqldatabase.com:3306/"+db;
-    public String user = "";
-    public String pass = "";
+    private String user = "";
+    private String pass = "";
     public static Connection link = null;
 
     public Connection Conectar() throws Exception{
+        //Se intenta conectar a la base de datos con los datos suministrados
         try{
             Class.forName("org.gjt.mm.mysql.Driver");
 
@@ -23,10 +25,12 @@ public class Conexion {
     }
     
     public void setUser(String user){
+        //Se cambia el usuario
         this.user = user;
     }
     
     public void setPass(String pass){
+        //Se cambia el password
         this.pass = pass;
     }
     
