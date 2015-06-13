@@ -174,9 +174,9 @@ public class Cliente extends javax.swing.JFrame {
 
     private void BtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarActionPerformed
         try{
-            stmt = Conexion.link.createStatement(); //Crea un Statement 
+            stmt = Conexion.link.createStatement(); //Crea un nuevo Statement 
             rs = stmt.executeQuery(getQuery()); //Recibe un Query el cual depende de los datos llenados
-            JTable table = new JTable(Conexion.buildTableModel(rs));
+            JTable table = new JTable(Conexion.buildTableModel(rs)); //Crea una tabla con el resultado de la busqueda
             Resultados resultado = new Resultados(table); //Crea la interfaz de resultados
             resultado.setLocationRelativeTo(null); //La ubica en el centro de la pantalla
         }

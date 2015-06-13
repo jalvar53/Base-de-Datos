@@ -7,8 +7,8 @@ import javax.swing.JTable;
 
 public class Historial extends javax.swing.JFrame {
 
-    Statement stmt = null;
-    ResultSet rs = null;
+    Statement stmt = null; //El estatemente desde donde se ejecutaran Queries
+    ResultSet rs = null; //Donde se almacenara el resultado de dichos Queries
         
     public Historial() {
         initComponents();
@@ -168,23 +168,22 @@ public class Historial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtSalirActionPerformed
-        OpcionesAdmin opc = new OpcionesAdmin();
-        opc.setVisible(true);
-        opc.setLocationRelativeTo(null);
-        this.dispose();
+        OpcionesAdmin opc = new OpcionesAdmin(); //Crea el interfaz menu
+        opc.setVisible(true); //lo hace visible
+        opc.setLocationRelativeTo(null); //Lo ubica en el centro de la pantalla
+        this.dispose(); //Cierra esta ventana
     }//GEN-LAST:event_BtSalirActionPerformed
 
     private void BtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarActionPerformed
         try{
-            stmt = Conexion.link.createStatement();
-            rs = stmt.executeQuery(getQuery());
-            JTable table = new JTable(Conexion.buildTableModel(rs));
-            Resultados resultado;
-            resultado = new Resultados(table);
-            resultado.setLocationRelativeTo(null);
+            stmt = Conexion.link.createStatement(); //Crea un nuevo Statement 
+            rs = stmt.executeQuery(getQuery()); //Recibe un Query el cual depende de los datos llenados
+            JTable table = new JTable(Conexion.buildTableModel(rs)); //Crea una tabla con el resultado de la busqueda
+            Resultados resultado = new Resultados(table); //Crea la interfaz de resultados
+            resultado.setLocationRelativeTo(null); //La ubica en el centro de la pantalla
         }
         catch(SQLException e){
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage()); //Atrapa y muestra cualquier error
         }  
     }//GEN-LAST:event_BtBuscarActionPerformed
 
@@ -210,25 +209,30 @@ public class Historial extends javax.swing.JFrame {
     private javax.swing.JLabel jlabel3;
     private javax.swing.JLabel jlabel4;
     // End of variables declaration//GEN-END:variables
-    public String getQuery(){
+    public String getQuery(){ //Metodo que revisa cada campo y edita el Query para incluir la restriccion
         String query = "SELECT * FROM Renta WHERE ";
         if(!ID.getText().isEmpty()){
+            //Si ingreso una Identificacion:
             query = query + "`Identificacion` = " + "'" + ID.getText() + "'" + " AND ";
         }
         if(!Placa.getText().isEmpty()){
+            //Si ingreso una Placa:
             query = query + "`Placa` = " + "'" + Placa.getText() + "'" + " AND ";
         }
         if(!AñoInicio.getText().isEmpty() && !MesInicio.getText().isEmpty() && !DiaInicio.getText().isEmpty()){
+            //Si ingreso una Fecha de inicio:
             query = query + "`Fecha Ini` = " + "'" + AñoInicio.getText() + "-" + MesInicio.getText() + "-" + DiaInicio.getText() + "'" + " AND ";
         }
         if(!AñoFin.getText().isEmpty() && !MesFin.getText().isEmpty() && !DiaFin.getText().isEmpty()){
+            //Si ingreso una Fecha de finalizacion:
             query = query + "`Fecha Fin` = " + "'" + AñoFin.getText() + "-" + MesFin.getText() + "-" + DiaFin.getText() + "'" + " AND ";
         }
         if(!ID.getText().isEmpty() || !Placa.getText().isEmpty() || !AñoInicio.getText().isEmpty() || !AñoFin.getText().isEmpty()){
-            query = query.substring(0, query.length()-4);
+            //Revisa si por lo menos se hizo una operacion:
+            query = query.substring(0, query.length()-4); //Borra el ultimo "AND" del Query
         }
-        else{
-            query = query.substring(0, query.length()-5);
+        else{ //En caso de que no se halla llenado ni un solo campo
+            query = query.substring(0, query.length()-5); //Elimina el "WHERE" del Query
         }
         return query;
     }    
