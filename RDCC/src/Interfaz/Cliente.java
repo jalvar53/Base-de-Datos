@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 public class Cliente extends javax.swing.JFrame {
@@ -77,7 +76,7 @@ public class Cliente extends javax.swing.JFrame {
         });
 
         BtSalir.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        BtSalir.setText("Salir");
+        BtSalir.setText("Volver");
         BtSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtSalirActionPerformed(evt);

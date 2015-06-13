@@ -3,11 +3,7 @@ package Interfaz;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.util.Vector;
-import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 public class Sede extends javax.swing.JFrame {
